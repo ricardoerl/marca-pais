@@ -83,11 +83,6 @@
       canvas.setActiveObject(fabricText);
       fabricText.centerH();
       fabricText.enterEditing();
-
-      if (window.innerWidth < 960) {
-
-      }
-
     };
 
     // Save Image
@@ -98,6 +93,20 @@
           saveAs(blob, "marca-pais.png");
       });
     }
+
+    // Workaround for touchscreens
+    var disableScroll = function(){
+      canvas.allowTouchScrolling = false;
+    };
+
+    var enableScroll = function(){
+      canvas.allowTouchScrolling = true;
+    };
+
+    canvas.on('object:moving', disableScroll);
+    canvas.on('object:scaling', disableScroll);
+    canvas.on('object:rotating', disableScroll);
+    canvas.on('mouse:up', enableScroll);
 
   </script>
   <script>
