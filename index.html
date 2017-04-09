@@ -25,17 +25,12 @@
       font-style: normal;
     }
     .canvas-container { margin: 0 auto; }
-    #app-canvas {
-      width: 300px!important;
-      height: 150px!important;
-    }
-
   </style>
 </head>
 <body>
-  <div id="app" class="vh-100 dt w-100">
+  <div id="app" class="vh-100 dt w-100 bg-white">
     <div class="dtc v-mid tc white">
-      <canvas id="app-canvas" style="font-family: 'Grenale2NormDemi';"></canvas>
+      <canvas width="1280" height="640" id="app-canvas" style="font-family: 'Grenale2NormDemi';"></canvas>
       <div class="mt6">
         <button id="app-button" class="f3 bg-green white pv3 ph5 bn br2 pointer grow">Guardar imagen</button>
         <p class="silver">Hecho por <a href="http://ricardoerl.com/" target="_blank" class="link green">Ricardo Ramírez</a></p>
@@ -55,10 +50,10 @@
         canvasText = '',
         canvasButton = document.getElementById('app-button'),
         canvasTextOptions = {
-          width: 100,
-          left: 50,
-          top: 50,
-          fontSize: 12,
+          width: 800,
+          left: 375,
+          top: 400,
+          fontSize: 60,
           fontFamily: 'Grenale2NormDemi',
           fontWeight: 'bold',
           lineHeight: 1,
@@ -89,8 +84,9 @@
       fabricText.centerH();
       fabricText.enterEditing();
 
-      // Responsive settings
+      if (window.innerWidth < 960) {
 
+      }
 
     };
 
