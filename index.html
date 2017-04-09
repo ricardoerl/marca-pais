@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
   <title>Generador de Marca País &mdash; El Salvador</title>
   <meta name="description" content="Generador de Marca país El Salvador">
   <meta property="og:type" content="website" />
@@ -25,12 +25,17 @@
       font-style: normal;
     }
     .canvas-container { margin: 0 auto; }
+    #app-canvas {
+      width: 300px!important;
+      height: 150px!important;
+    }
+
   </style>
 </head>
 <body>
   <div id="app" class="vh-100 dt w-100">
     <div class="dtc v-mid tc white">
-      <canvas width="1280" height="640" id="app-canvas" style="font-family: 'Grenale2NormDemi';"></canvas>
+      <canvas id="app-canvas" style="font-family: 'Grenale2NormDemi';"></canvas>
       <div class="mt6">
         <button id="app-button" class="f3 bg-green white pv3 ph5 bn br2 pointer grow">Guardar imagen</button>
         <p class="silver">Hecho por <a href="http://ricardoerl.com/" target="_blank" class="link green">Ricardo Ramírez</a></p>
@@ -40,15 +45,20 @@
   <script>
 
     // Initial setup
-    var canvas = new fabric.Canvas('app-canvas'),
+    var canvas = new fabric.Canvas('app-canvas', {
+          selection: false,
+          controlsAboveOverlay: true,
+          centeredScaling: true,
+          allowTouchScrolling: true
+        }),
         canvasBackground = 'http://i.imgur.com/r4x7gcS.png',
         canvasText = '',
         canvasButton = document.getElementById('app-button'),
         canvasTextOptions = {
-          width: 800,
-          left: 375,
-          top: 400,
-          fontSize: 60,
+          width: 100,
+          left: 50,
+          top: 50,
+          fontSize: 12,
           fontFamily: 'Grenale2NormDemi',
           fontWeight: 'bold',
           lineHeight: 1,
@@ -64,6 +74,7 @@
 
     // Add background image
     fabric.Image.fromURL(canvasBackground, function(img) {
+      img.set({width: canvas.width, height: canvas.height, originX: 'left', originY: 'top'});
       canvas.setBackgroundImage(img, canvas.renderAll.bind(canvas));
     }, { crossOrigin: 'Anonymous' });
 
@@ -77,6 +88,10 @@
       canvas.setActiveObject(fabricText);
       fabricText.centerH();
       fabricText.enterEditing();
+
+      // Responsive settings
+
+
     };
 
     // Save Image
